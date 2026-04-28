@@ -1,0 +1,68 @@
+// Supposed to double every number in an array
+function doubleAll(numbers) {
+  return numbers.map(n => {
+    n * 2; // bug here
+  });
+}
+
+
+solution : 
+
+- here n * 2 inside the {} so need to return dont write directly
+
+function doubleAll(numbers) {
+  return numbers.map(n => {
+   return  n * 2;  // put the return keyword here
+  });
+}
+
+             OR
+
+function doubleAll(numbers) {
+  return numbers.map(n => 
+   return  n * 2;  // remove a {}
+  );
+}
+
+...................................................................................................................................
+
+
+// Supposed to greet a user by name
+function greet(name) {
+  const message = "Hello, " + Name + "!"; // bug here
+  return message;
+}
+
+
+solution :
+
+- here bug parameter is name and we try to print Name so correct this
+
+function greet(name) {
+  const message = "Hello, " + name + "!"; // bug here
+  return message;
+}
+
+
+...................................................................................................................................
+
+// Supposed to check if a number is even
+const isEven = (num) => {
+  if (num % 2 = 0) { // bug here
+    return true;
+  }
+  return false;
+}
+
+solution :
+
+- put  == instead of the = because equals to is not an comparison operator
+
+corrected code is :
+
+ const isEven = (num) => {
+  if (num % 2 == 0) { // bug here
+    return true;
+  }
+  return false;
+}

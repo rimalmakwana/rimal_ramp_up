@@ -1,0 +1,33 @@
+A. What's the difference between id and class in HTML? Can you use the same id twice on a page?
+
+--> classname is use for the multiple element , while id is use for the one unique element. and we can not use same id twice on page.
+
+
+B.What does display: block vs display: inline mean? Give one HTML tag that is block by default and one that is inline.
+
+--> display : block 
+
+    - always start on the new line 
+
+    - also set a specific dimention like width, height , margin , padding
+
+    - <div> , <h> , <p> , <section> it common block element 
+
+--> display : inline
+
+    - they sit side by side with other elements
+
+    - can not set width and height 
+
+    - <span> , <a>, <strong> this are the common inline elements
+
+
+C.What is the CSS box model? If a box has width: 200px, padding: 20px, and border: 2px — how wide is it actually on the screen? (Hint: it depends on box-sizing.)
+
+--> css box model define the our design and layout .
+
+- four layers : margin , padding , border , margin
+
+-if we use a content-box so box size is 244px and if we use a border-box so box size is 200px;
+
+

@@ -1,0 +1,64 @@
+A . What's the difference between let, const, and var? Which one would you use by default and why?
+
+var :
+
+    - var is function scope and non-block scope variable. 
+
+    - support a reassignment and redeclaration.
+
+let :
+
+    - let is block scope
+
+- support a reassignment and not support a redeclaration.
+
+const :
+
+    - const is block scope.
+
+    - not support a reassignment and redeclaration.
+
+
+- use a const as a by default because Prevents accidental changes and Makes code safer & predictable.
+
+..................................................................................................................................
+
+B.What does undefined mean in JavaScript? Write one line of code that would produce it.
+
+--> undefined means a variable exists but has no value assigned yet.
+
+let x;
+
+here x is undefined because it is declared but not initialized.
+
+.................................................................................................................................
+
+C.What is a function? What's the difference between defining a function and calling it?
+
+--> A function is a block of reusable code that performs a task.
+
+- Defining -> creating the function
+
+- calling -> executing the function
+
+
+Example: 
+
+function demo() {
+    console.log("Hello");    <------ function defining
+}
+
+
+demo(); <----- function calling
+
+..................................................................................................................................
+
+D.What does console.log actually do? Why is it useful when writing code?
+
+--> console.log() prints output to the browser console.
+
+Why it’s useful:
+
+- Debugging
+
+-Inspect data 

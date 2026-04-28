@@ -1,0 +1,34 @@
+1. Find and change the color of the main headline to red using the Elements panel.
+
+-->Open  DevTools → Elements 
+- Found main headline (<a class="titleline"> or similar
+
+- now change color --> color: red;
+
+.................................................................................................................................
+
+2. Find a network request the page makes — what's the URL, what method is it (GET/POST), and what's the response status code?
+
+--> Opened Network tab
+
+-Reloaded page
+
+-Found request: URL: https://news.ycombinator.com/
+
+-Method: GET
+
+-Status Code: 200 OK
+
+...................................................................................................................................
+
+3.Open the Console and run document.title. What does it return? Now try changing it: document.title = "My Cool Page".
+
+- when i run document.title so output is "Hacker News"
+
+- now chnage the title using document.title = "My Cool Page"
+
+-Tab title updated instantly
+
+...................................................................................................................................
+
+

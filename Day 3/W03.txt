@@ -1,0 +1,18 @@
+<button id="myBtn">Click Me</button>
+
+<script>
+const button = document.getElementById('mybtn'); // bug 1
+
+button.addEventListener('Click', function() { // bug 2
+  alert('Hello!');
+});
+</script>
+
+
+solution :
+
+- id name is myBtn so here we are try to fetch mybtn so fix this .
+
+-Wrong event name , Correct is "click" not "Click"
+
+

@@ -1,0 +1,46 @@
+<style>
+.container {
+  display: flex;
+  /* missing a property here */
+}
+.box {
+  width: 200px;
+  height: 100px;
+  background: coral;
+  margin: 10px;
+}
+</style>
+
+<div class="contaner">  /* typo here */
+  <div class="box">1</div>
+  <div class="box">2</div>
+  <div class="box">3</div>
+</div>
+
+
+
+-----> Solution 
+
+in that code classname is contaner and we try to apply css on the container so need to chnage it.
+
+
+------> correct code is 
+
+<style>
+.contaner {
+  display: flex;
+  /* missing a property here */
+}
+.box {
+  width: 200px;
+  height: 100px;
+  background: coral;
+  margin: 10px;
+}
+</style>
+
+<div class="contaner">  /* typo here */
+  <div class="box">1</div>
+  <div class="box">2</div>
+  <div class="box">3</div>
+</div>
