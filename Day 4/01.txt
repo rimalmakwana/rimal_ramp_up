@@ -1,0 +1,41 @@
+A . What is a React component in your own words? How is it different from a plain JavaScript function?
+
+--> react component is reusable block of code it is use for the build the UI.
+
+-- once component defined and use it multiple times any where just import it.
+
+difference btw plain js function is :
+
+- Component → used to build UI and JS function → used for logic
+
+-Component → returns JSX (HTML-like UI)
+JS function → returns any value (number, string)
+
+-Component → can use state (useState) and hooks
+JS function → no built-in state management
+
+-Component → used like <MyComponent />
+JS function → called like myFunction()
+
+................................................................................................................................
+
+B. What is JSX? Why does React use it instead of regular HTML strings?
+
+- jsx is syntax extention for the JavaScript that allow write HTML like code inside the JavaScript.
+
+Why React uses JSX instead of HTML strings:
+
+-Writing UI like HTML is much easier than long JS code.
+
+...............................................................................................................................
+
+C.What is useState? Why can't we just use a regular variable to track state in React?
+
+-- useState is a react hook that allow to add state variable to function and if you change that reflact in the ui directly without reloading the whole 
+
+const [count, setCount] = useState(0);
+
+- take a array with two parameter one is the state variable and second is function for the update the state variable.
+
+
+...................................................................................................................................

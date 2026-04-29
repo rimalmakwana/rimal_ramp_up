@@ -1,0 +1,35 @@
+function NameDisplay() {
+  let name = "Stranger"; // bug
+
+  return (
+    <div>
+      <input
+        type="text"
+        onChange={(e) => { name = e.target.value; }} // bug
+      />
+      <p>Hello, {name}!</p>
+    </div>
+);
+
+
+--> solution:
+
+- let name = "Stranger"; it is a normal variable so react does not re render whene it chnages.
+
+- so use a useState 
+
+-function NameDisplay() {
+  const [name, setName] = useState("Stranger");
+
+  return (
+    <div>
+      <input
+        type="text"
+        onChange={(e) => setName(e.target.value)}
+      />
+      <p>Hello, {name}!</p>
+    </div>
+  );
+} 
+
+  
