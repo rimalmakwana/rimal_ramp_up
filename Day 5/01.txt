@@ -1,0 +1,39 @@
+##Google "What is a REST API?" and read one explanation. Then open https://jsonplaceholder.typicode.com/posts/1 in your browser. What do you see?
+
+-A REST API (Representational State Transfer) is an architectural style for designing networked applications that allows two software
+systems to communicate over the internet.
+
+-whene i open this https://jsonplaceholder.typicode.com/posts/1 URL, i see the json data
+
+
+{
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+
+
+
+## what is JSON :
+JSON (JavaScript Object Notation) is a lightweight, text-based data format used for storing and exchanging data 
+between systems, such as a server and a web application.
+
+
+
+## What does .json() do in the code above? Why do we need it?
+
+--> converts a raw HTTP response body into a usable JavaScript object or array. 
+
+
+## What does "asynchronous" mean? Why does fetching data from the internet need to be async?
+
+--> asynchronous means task can run without the waiting for the privious task is completed or not .
+
+
+--> When you make a network request (API call, fetch), your program has to wait for things like:
+
+-server processing time
+-internet speed
+-response size
+
