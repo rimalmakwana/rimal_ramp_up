@@ -1,0 +1,98 @@
+1. Below is "old-style" JavaScript. Rewrite every line using modern syntax — destructuring, spread, and rest. Don't change what the code does
+only how it's written.
+
+// 1. Extracting values from objects
+const name = user.name;
+const age = user.age;
+const city = user.address.city;
+
+answer:
+
+const {name , age , address:{city}} = user;
+
+This is called object destructuring in JavaScript.
+
+{ name, age } → basic object destructuring
+
+address: { city } → nested destructuring
+...........................................................
+
+// 2. Copying an object with one field changed
+const updatedUser = Object.assign({}, user, { age: 25 });
+
+answer :
+
+// using spread operator
+const updatedUser = { ...user, age: 25 };
+
+..........................................................
+
+
+// 3. Merging two arrays
+const combined = arr1.concat(arr2);
+
+answer :
+
+// using a spread operator
+const combined = {...arr1 , ...arr2};
+
+..........................................................
+
+// 4. Getting first item + the rest
+const first = items[0];
+const rest = items.slice(1);
+
+answer:
+
+// using array destructuring + rest operator
+const [first, ...rest] = items;
+
+..........................................................
+
+// 5. Function that accepts an object, uses name + email
+function greet(user) {
+  return "Hello " + user.name + ", your email is " + user.email;
+}
+
+answer:
+
+// using parameter destructuring + template literals
+
+function greet({name, email}){
+    return `Hello ${name} , your email is ${email}`;
+}
+
+............................................................................................................................................
+
+2 . What happens if you destructure a property that doesn't exist? Show with a code example.
+
+-->If you destructure a property that doesn’t exist, it becomes undefined
+
+const user = { name: "Rimal" };
+
+const { name, age } = user;
+
+console.log(name); // Rimal
+console.log(age);  // undefined
+
+............................................................................................................................................
+
+3. What does { name = 'Guest' } mean in destructuring?
+
+--> const user = {};
+
+const { name = "Guest" } = user;
+
+console.log(name); // Guest
+
+....................................................
+
+--> const user = { name: "Rimal" };
+
+const { name = "Guest" } = user;
+
+console.log(name); // Rimal
+
+-Default works only when value is undefined
+
+-Not for null or other values

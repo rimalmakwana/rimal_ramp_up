@@ -1,0 +1,31 @@
+A . What does async in front of a function actually do? What does it make the function return?
+
+- when a put async before the function , this function always return a Promise.
+
+
+- its return depending apon a code sometimes return a normal value , object , throw new error .
+
+
+B.What's the point of try/catch with async/await? What happens if you don't have it and the fetch fails?
+
+With async/await, errors don’t go to .catch() automatically—you handle them with: try catch Block
+
+If you DON’T use try/catch:
+
+-Promise gets rejected
+
+-No catch → Unhandled Promise Rejection
+
+-You’ll see an error in console
+
+-Code after the failure does not run
+
+...............................................................................................................................
+
+C. You wrote const doubled = numbers.map(n => n * 2). A classmate says "just use a for loop — it's simpler." How do you respond?
+
+i say use a map() function because its iterate on the every element of array and its return a new array ;
+
+No index, no manual push
+
+...................................................................................................................................

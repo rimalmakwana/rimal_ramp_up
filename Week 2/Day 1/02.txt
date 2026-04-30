@@ -1,0 +1,54 @@
+1 . This function crashes when some fields are missing in the user object. Fix it using optional chaining (?.) and nullish coalescing (??).
+
+function displayUserCard(user) {
+  return {
+    fullName:  user.firstName + " " + user.lastName,
+    city:      user.address.city,         // crashes if no address
+    phone:     user.contact.phone,        // crashes if no contact
+    plan:      user.subscription.plan,    // crashes if no subscription
+    initials:  user.firstName[0] + user.lastName[0], // crashes if names undefined
+  };
+}
+
+// Test with this broken user object:
+const partialUser = {
+  firstName: "Priya",
+  address: null,
+  contact: undefined,
+};
+
+
+answer:
+function displayUserCard(user) {
+  return {
+
+    fullName : `${user.firstName ?? ""}` ${user.lastName ?? "}.trim(),
+    city: user.address?.city ?? "N/A",
+    phone : user.contact?.phone ?? "N/A",
+    plan : user.subscription?.plan ?? "Free",
+    initials : `${user.firstName?.[0] ?? ""}${user.lastName?.[0] ?? ""}`,
+
+  };
+}
+
+................................................................................
+
+
+2 .What's the difference between ?? and || when providing defaults? Give an example where they behave differently.
+
+
+--> || (OR operator)
+
+Returns the first truthy value.
+
+-->?? (Nullish coalescing)
+Returns the first value that is NOT null or undefined.
+
+
+const count = 0;
+
+const a = count || 10;
+const b = count ?? 10;
+
+console.log(a); // 10 (0 is treated as falsy)
+console.log(b); // 0  (0 is valid value)

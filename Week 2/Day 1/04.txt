@@ -1,0 +1,78 @@
+1 . Each snippet has one bug. Find it, name it, fix it.
+
+// Snippet 1 — should log all names
+const users = [{name: "Ali"}, {name: "Mia"}, {name: "Dev"}];
+users.forEach(user => {
+  return user.name; // bug
+});
+
+
+answer :
+--------
+
+forEach behaviour :
+
+-Runs a function for each element
+
+-Does NOT return anything
+
+so, correcetd code is :
+------------------------
+
+const users = [{name: "Ali"}, {name: "Mia"}, {name: "Dev"}];
+
+users.forEach(user => {
+  console.log(user.name);
+});
+
+..............................................................................
+
+// Snippet 2 — should make all names uppercase
+const names = ["alice", "bob", "carol"];
+const upper = names.map(n => {
+  n.toUpperCase(); // bug
+});
+
+answer:
+-------
+
+in this snippet problem is use {} but dont return any thing if want a snippt correct so there are two ways , fisrt one is remove {} or second 
+way is put return .
+
+const upper = names.map(n => {
+  return n.toUpperCase();
+});
+
+       OR
+
+const upper = names.map(n => n.toUpperCase());
+
+...................................................................................
+
+3. // Snippet 3 — should wait for data before logging
+async function run() {
+  const data = fetchData(); // bug
+  console.log(data.title);
+}
+async function fetchData() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+  return res.json();
+}
+
+
+answer:
+-------
+
+- fetchData() is async, so it returns a Promise, not actual data.
+
+
+
+async function run() {
+  const data = await fetchData(); 
+  console.log(data.title);
+}
+
+async function fetchData() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+  return res.json();
+}
