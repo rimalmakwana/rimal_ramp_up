@@ -4,7 +4,7 @@ A . What does async in front of a function actually do? What does it make the fu
 
 
 - its return depending apon a code sometimes return a normal value , object , throw new error .
-
+........................................................................................................
 
 B.What's the point of try/catch with async/await? What happens if you don't have it and the fetch fails?
 
