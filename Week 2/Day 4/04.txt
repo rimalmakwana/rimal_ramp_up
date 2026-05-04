@@ -1,0 +1,100 @@
+A . What is a custom hook? How is it different from a regular function? What rule does it have to follow?
+
+answer:
+.......
+
+A custom hook in React is just a JavaScript function that uses React hooks (useState, useEffect, etc.) to reuse logic across components.
+
+example:
+
+function useFetch(url) {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    fetch(url)
+      .then(res => res.json())
+      .then(setData);
+  }, [url]);
+
+  return data;
+}
+
+
+Custom Hook vs Regular Function:
+................................
+
+Custom Hook ---> Uses React hooks , Name starts with use , Follows React rules , Handles state/lifecycle
+
+Regular Function --> not Uses React hooks , Name starts with use , Follows React rules , Handles state/lifecycle
+
+
+Rules a Custom Hook Must Follow:
+................................
+
+-Name must start with use
+
+-Only call hooks at the top level
+
+-Only call hooks inside: React components ,Custom hooks
+
+............................................................................................................................................
+
+B . you fetch data successfully — response.ok is true — and call setData(result). Immediately after, you try to console.log(data).
+It shows the old value. Why?
+
+
+setData(result);
+console.log(data); // old value
+
+Reason: State updates are asynchronous
+
+React does NOT update data immediately.
+
+What happens step-by-step:
+..........................
+
+setData(result) → schedules update
+React re-renders component later
+data gets updated in next render
+
+So inside the same function call, data is still old.
+
+
+Correct way to see updated value is use useEffect()
+
+cae 1 :
+useEffect(() => {
+  console.log(data);
+}, [data]);
+
+
+case 2 : 
+log the result directly
+setData(result);
+console.log(result); // ✅ correct new value
+
+
+
+..........................................................................................................................................
+
+C . The PokéAPI returns a 200 status even when it can't find a Pokémon. (Hint: it doesn't actually — but pretend it did.) How would your 
+error handling need to change?
+
+
+-- PokéAPI returns 200 even if Pokémon not found
+
+-if (!response.ok) {
+  throw new Error("Error");
+}
+
+-Then you must validate the response data, not status
+
+-const result = await response.json();
+
+if (!result || result.error || result.name === undefined) {
+  throw new Error("Pokémon not found");
+}
+
+setData(result);
+
+

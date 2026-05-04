@@ -1,0 +1,128 @@
+# Users are typing in a search box. Sometimes results from an earlier search appear after a newer one — old results overwrite the current ones.
+ It looks like a flickering mess.
+
+function SearchResults({ query }) {
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    if (!query) return;
+    fetch(`https://jsonplaceholder.typicode.com/posts?q=${query}`)
+      .then(r => r.json())
+      .then(data => setResults(data)); // stale data can arrive after newer data
+  }, [query]);
+
+  return <ul>{results.map(r => <li key={r.id}>{r.title}</li>)}</ul>;
+}
+
+answer:
+-------
+
+- as per classic race condition 
+multiple requests are coming, and they don’t resolve in order. 
+So an older request can finish after a newer one and overwrite the state.
+
+Use AbortController:
+
+-Cancel the previous request whenever query changes.
+
+import { useEffect, useState } from "react";
+
+function SearchResults({ query }) {
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    if (!query) return;
+
+    const controller = new AbortController();
+
+    fetch(`https://jsonplaceholder.typicode.com/posts?q=${query}`, {
+      signal: controller.signal
+    })
+      .then(r => r.json())
+      .then(data => setResults(data))
+      .catch(err => {
+        if (err.name !== "AbortError") {
+          console.error(err);
+        }
+      });
+
+    // cleanup: cancel previous request
+    return () => controller.abort();
+  }, [query]);
+
+  return (
+    <ul>
+      {results.map(r => (
+        <li key={r.id}>{r.title}</li>
+      ))}
+    </ul>
+  );
+}
+
+.............................................................................................................................................
+
+# Explain the race condition with a specific scenario: user types "re", then quickly types "react". Walk through exactly what can go wrong.
+#Fix it using the cleanup function approach (an ignore flag).
+#Bonus: What's another way to fix this using AbortController?
+
+answer:
+-------
+
+Step 1: User types "re"
+query = "re"
+useEffect runs → Request A is sent
+
+
+Step 2: Immediately types "react"
+query = "react"
+useEffect runs again → Request B is sent
+
+Step 3: Network timing (this is the problem)
+
+Let’s say:
+
+Request B (react) → returns FAST 
+Request A (re) → returns SLOW 
+
+So order of completion:
+
+Request B finishes → UI shows results for "react" (correct)
+Request A finishes later → UI gets overwritten with "re" results (WRONG)
+
+so solution is use cleanup function(ignore flag):
+
+import { useEffect, useState } from "react";
+
+function SearchResults({ query }) {
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    if (!query) return;
+
+    let ignore = false; // 👈 flag
+
+    fetch(`https://jsonplaceholder.typicode.com/posts?q=${query}`)
+      .then(r => r.json())
+      .then(data => {
+        if (!ignore) {
+          setResults(data); // only update if still relevant
+        }
+      });
+
+    // 👇 cleanup runs before next effect
+    return () => {
+      ignore = true;
+    };
+  }, [query]);
+
+  return (
+    <ul>
+      {results.map(r => (
+        <li key={r.id}>{r.title}</li>
+      ))}
+    </ul>
+  );
+}
+
+
+

@@ -1,0 +1,88 @@
+## This is a real skill you'll use in team settings. Read this component carefully and write a review comment for every problem you can find.
+There are at least 5.
+
+function UserDashboard({ userId }) {
+  const [data, setData] = useState();     // issue 1
+
+  useEffect(async () => {                 // issue 2
+    const res = await fetch(`/api/users/${userId}`);
+    const json = await res.json();
+    setData(json);
+                                          // issue 3 — missing
+  }, []);                                 // issue 4
+
+  return (
+    <div>
+      <h1>{data.name}</h1>             {/* issue 5 */}
+      {data.posts.map((p, i) =>         {/* issue 6 */}
+        <p key={i}>{p.title}</p>
+      )}
+    </div>
+);
+
+
+answer:
+...............................................................................................................
+
+issue 1 : useState() initialized without a default value
+
+-Problem is data is initialized as undefined.
+
+-The component tries to access data.name and data.posts, which will throw runtime errors before data is loaded.
+
+-Initialize with a safe default , useState({ name: "", posts: [] }) or use null and add conditional rendering.
+
+.................................................................................................................
+
+
+Issue 2: useEffect callback is declared async
+
+- useEffect expects either nothing or a cleanup function, but an async function returns a Promise, which React ignores and can lead to bugs.
+
+Define an inner async function and call it inside the effect.
+
+useEffect(() => {
+  async function fetchData() {
+    const res = await fetch(`/api/users/${userId}`);
+    const json = await res.json();
+    setData(json);
+  }
+  fetchData();
+}, [userId]);
+
+
+...............................................................................................................
+
+Issue 3: Missing cleanup / request cancellation
+
+There’s no cleanup logic to handle component unmount or stale requests.
+
+..............................................................................................................
+
+Issue 4: Missing dependency (userId) in dependency array
+
+- The dependency array is empty ([]).
+
+- The effect will only run once and won’t refetch data when userId changes, leading to stale UI.
+
+-Add userId to the dependency array: [userId].
+
+.............................................................................................................
+
+Issue 5: Unsafe access to data.name
+
+-data.name is accessed without checking if data exists.
+
+- This will throw an error on the initial render when data is still undefined or null.
+
+..............................................................................................................
+
+Issue 6: Using array index as key in list rendering
+
+- The list uses index (i) as the key.
+
+- Index keys can cause incorrect UI updates when the list changes (e.g., reordering, insertion), leading to subtle bugs.
+
+
+
+
