@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+}
+
+/* Center everything perfectly */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   
+  align-items: center;       
+}
+
+/* Title */
+.title {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Card box */
+.card {
+  background: white;
+  padding: 25px;
+  width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+/* Loading text */
+.status {
+  color: #555;
+  font-size: 18px;
+}
+
+/* Error text */
+.error {
+  color: red;
+  font-weight: bold;
+}
