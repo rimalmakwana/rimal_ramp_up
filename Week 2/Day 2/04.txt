@@ -1,0 +1,65 @@
+1 . You have state in ComponentA but ComponentB (a sibling, not a child) also needs it. You can't pass it as props — they're at the same 
+level What do you do? Describe the solution.
+
+answer:
+-------
+
+ComponentA and ComponentB both are in same level so can not share state directly , so solution is lift the state to nearest common parent 
+component.
+
+example: 
+
+function Parent() {
+  const [data, setData] = useState([]);
+
+  return (
+    <>
+      <ComponentA data={data} setData={setData} />
+      <ComponentB data={data} />
+    </>
+  );
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+2 . What's the difference between useEffect(() => ..., []) and useEffect(() => ...) with no dependency array? What bug does each cause 
+if used carelessly?
+
+answer:
+-------
+
+- useEffect(() => ..., []) this runs only once after the fisrt render . then never runs it again , no matter what changes.
+
+-useEffect(() => {...}) this runs after every render , if any state changed in the component run this useEffect on every render.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+3. You call setCount(count + 1) three times in a row. Does the count go up by 3? Explain what actually happens.
+
+answer:
+-------
+
+setCount(count + 1)
+setCount(count + 1)
+setCount(count + 1)
+
+- here all this three calls use the same count  value from the current render.
+
+if count is 0 so,
+
+setCount(1);
+setCount(1);
+setCount(1);
+
+React doesn’t update state immediately line-by-line. It queues updates and processes them later.
+
+if you want +3
+
+use this:
+ 
+setCount(prev => prev + 1);
+setCount(prev => prev + 1);
+setCount(prev => prev + 1);
+
+
+.............................................................................................................................................
