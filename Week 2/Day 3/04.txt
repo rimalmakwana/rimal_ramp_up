@@ -1,0 +1,43 @@
+A. What's the difference between validating on onChange vs on onBlur? Which feels better UX-wise and why?
+
+
+-onChange ->Runs every time user types
+
+-onBlur : Runs when user leaves the input
+
+-both are the best on UX-wise because in real application use  a both
+
+...........................................................................................................................................
+
+B. A user fills out a form perfectly and hits submit. Your validation says everything is fine. The API returns a 400 error saying "email 
+already taken." How would you show that error to the user?
+
+- Even if frontend validation passes, backend can fail.
+
+Store API error in state:
+const [apiError, setApiError] = useState("");
+
+On submit:
+try {
+  await apiCall();
+} catch (err) {
+  setApiError("Email already taken");
+}
+
+
+Show in UI:
+{apiError && <p className="error">{apiError}</p>}
+
+.............................................................................................................................................
+
+C. Why is it important to disable the submit button while a form is submitting? What could go wrong if you don't?
+
+
+- because of if dont disable the button so User clicks button multiple times
+-multiple API calls
+-duplicate data
+-server overload
+
+- main use is prevent the duplicate request
+
+.............................................................................................................................................

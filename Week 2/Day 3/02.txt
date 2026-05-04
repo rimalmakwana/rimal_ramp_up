@@ -1,0 +1,135 @@
+1 . This form has two bugs. The "Clear" button doesn't work, and editing one field sometimes resets another. Diagnose and fix both.
+
+function SearchForm() {
+  let query = '';
+  let category = 'all';
+
+  function handleSubmit() {
+    console.log("Searching:", query, category);
+  }
+
+  function handleClear() {
+    query = '';
+    category = 'all';
+  }
+
+  return (
+    <div>
+      <input
+        defaultValue={query}
+        onChange={e => query = e.target.value}
+      />
+      <select
+        defaultValue={category}
+        onChange={e => category = e.target.value}
+      >
+        <option value="all">All</option>
+        <option value="news">News</option>
+      </select>
+      <button onClick={handleSubmit}>Search</button>
+      <button onClick={handleClear}>Clear</button>
+    </div>
+  );
+}
+
+answer:
+-------
+
+- now in this case not a use useState 
+
+-query and category are just local variables → React does not track them
+
+-defaultValue only sets initial value → it doesn’t update after render
+
+
+so corrected code is :
+
+import { useState } from "react";
+
+function SearchForm() {
+  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState('all');
+
+  function handleSubmit() {
+    console.log("Searching:", query, category);
+  }
+
+  function handleClear() {
+    setQuery('');
+    setCategory('all');
+  }
+
+  return (
+    <div>
+      <input
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+      >
+        <option value="all">All</option>
+        <option value="news">News</option>
+      </select>
+
+      <button onClick={handleSubmit}>Search</button>
+      <button onClick={handleClear}>Clear</button>
+    </div>
+  );
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+2 . What is a "controlled input" in React? How is it different from what's above?
+
+
+A controlled input in React means the input’s value is fully controlled by React state.
+
+const [query, setQuery] = useState('');
+
+<input
+  value={query}
+  onChange={(e) => setQuery(e.target.value)}
+/>
+
+
+-value comes from state
+
+-onChange updates state
+
+...........................................................................................................................................
+
+3. Why is the Clear button broken? What makes React's state different from a regular variable?
+
+- function handleClear() {
+  query = '';
+  category = 'all';
+}
+
+This only changes local variables, not the UI.
+
+-React doesn’t “watch” normal variables
+
+-No re-render happens
+
+
+Why React state is different:
+-----------------------------
+
+#State triggers re-render: 
+
+setQuery('');
+
+-Tells React: “data changed”
+-React re-renders component
+-UI updates automatically
+
+
+# tate persists between renders:
+
+-useState keeps values across renders
+-Normal variables reset every render
+
