@@ -1,0 +1,59 @@
+A. Compare your Todo app from Week 1 (plain JS) with your React version from Tuesday. What feels different? What's actually better about the 
+React version — and is anything worse or more complicated?
+
+-first i write normal code using a html , css ans javascript now i build same functinalities using a react so totaly different feeling.
+
+- so in react actually better things is How state is handled instead of using normal variable 
+
+- how UI Updates
+
+- Code Structure (like component)
+
+- Filtering
+
+
+complicated in React:
+--------------------
+
+-how to manage useState
+-props
+-component structure
+-re-rendering using a useEffect
+- use of ...spread
+
+.............................................................................................................................................
+
+B. This week you built a custom hook (useFetch). In your own words: what problem does it solve, and when would you not bother extracting a custom hook?
+
+- problem solve by useFetch :
+
+- whene building a react application , everytime we use a useState for data ,useState for loading ,useState for error ,useEffect to call API
+,cleanup logic (AbortController) means repeating the same code in every component.
+
+- seFetch solve this problem by moving all that repeated logic into one reusable function .
+
+.............................................................................................................................................
+
+C.hat was the hardest task this week? What made it hard — the concept, the implementation, or finding the bug?
+
+my hardest part is in this week is i know about the javascript concept like map, filter , reduce , ...spread operator but whene i try to building
+somthing on react app that time confuced how to handle with the usestate or useEffect.
+
+............................................................................................................................................
+
+D .If you had to add one more feature to the Weather Dashboard tomorrow, what would it be? How would you build it?
+ 
+-Feature I would add: Hourly Forecast (Next 24 Hours)
+
+-Right now your app shows: Current weather  ,7-day forecast but not show What happens in the next few hours.
+
+- Right now your API call: &daily=temperature_2m_max,temperature_2m_min,weathercode
+
+-so need to add &hourly=temperature_2m,weathercode
+
+E. What concept from this week do you still feel shaky on? What's your plan to get more comfortable with it?
+
+- how to use a map, filter , and ...spread  on application so my plan is more comfortable with it , I will also practice rewriting logic multiple
+times until I can recognize patterns easily.
+
+.............................................................................................................................................
