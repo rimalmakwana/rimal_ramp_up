@@ -23,10 +23,10 @@ function AddressInfo({ formData, handleChange, onNext, onBack }) {
   };
 
   // Check if all fields are filled
-  const isFormFilled =
-    formData.city.trim() !== "" &&
-    formData.state.trim() !== "" &&
-    formData.pincode.trim() !== "";
+  // const isFormFilled =
+  //   formData.city.trim() !== "" &&
+  //   formData.state.trim() !== "" &&
+  //   formData.pincode.trim() !== "";
 
   // When Next is clicked
   const handleNext = () => {
@@ -98,7 +98,7 @@ function AddressInfo({ formData, handleChange, onNext, onBack }) {
         <button
           className="next-btn"
           onClick={handleNext}
-          disabled={!isFormFilled}
+          // disabled={!isFormFilled}
         >
           Next →
         </button>

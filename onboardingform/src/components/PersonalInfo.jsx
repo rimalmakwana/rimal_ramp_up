@@ -24,10 +24,10 @@ function PersonalInfo({ formData, handleChange, onNext }) {
   };
 
   // Check if all fields are filled
-  const isFormFilled =
-    formData.name.trim() !== "" &&
-    formData.email.trim() !== "" &&
-    formData.phone.trim() !== "";
+  // const isFormFilled =
+  //   formData.name.trim() !== "" &&
+  //   formData.email.trim() !== "" &&
+  //   formData.phone.trim() !== "";
 
   // Handle Next button
   const handleNext = () => {
@@ -98,7 +98,7 @@ function PersonalInfo({ formData, handleChange, onNext }) {
         <button
           className="next-btn"
           onClick={handleNext}
-          disabled={!isFormFilled}
+          // disabled={!isFormFilled}
         >
           Next →
         </button>
