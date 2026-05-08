@@ -1,23 +1,25 @@
+@import "tailwindcss";
+
 body {
   font-family: Arial, sans-serif;
   background: #f6f7fb;
   margin: 0;
 }
 
-.container {
+/* .container {
   max-width: 700px;
   margin: 40px auto;
   padding: 20px;
-}
+} */
 
-.title {
+/* .title {
   margin-bottom: 5px;
-}
+} */
 
-.subtitle {
+/* .subtitle {
   color: gray;
   margin-bottom: 20px;
-}
+} */
 
 /* Step Indicator */
 .step-container {
@@ -61,12 +63,12 @@ body {
 }
 
 /* Card */
-.card {
+/* .card {
   background: white;
   padding: 25px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
+} */
 
 /* Form */
 .form-subtitle {
@@ -176,6 +178,10 @@ input:-webkit-autofill:active {
   border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .back-btn {
@@ -187,6 +193,10 @@ input:-webkit-autofill:active {
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .back-btn:hover {
@@ -295,6 +305,10 @@ input:-webkit-autofill:active {
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .submit-btn:hover {
@@ -307,9 +321,9 @@ input:-webkit-autofill:active {
   margin: 80px auto;
 }
 
-.success-card {
+/* .success-card {
   padding: 40px 30px;
-}
+} */
 
 .success-container {
   text-align: center;
